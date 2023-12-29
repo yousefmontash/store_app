@@ -1,12 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:strore_app/firebase_options.dart';
 import 'package:strore_app/mtObserver.dart';
 import 'package:strore_app/pages/cubits/product_page_cubit/product_page_cubit.dart';
 import 'package:strore_app/pages/cubits/products_cubit/products_cubit.dart';
 import 'package:strore_app/pages/home_page.dart';
 import 'package:strore_app/pages/update_product_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(StoreApp());
   Bloc.observer = MyObserver();
 }
